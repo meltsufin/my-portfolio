@@ -30,7 +30,7 @@ public class DataServlet extends HttpServlet {
 
   private final Gson gson = new Gson();
 
-  private final List<String> comments = Arrays.asList("This page sucks!", "This page rocks", "Is this page under construction?");
+  private final List<String> comments = Arrays.asList("This page sucks!", "This page rocks!", "Is this page under construction?");
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
