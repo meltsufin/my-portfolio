@@ -30,12 +30,21 @@ public class DataServlet extends HttpServlet {
 
   private final Gson gson = new Gson();
 
-  private final List<String> comments = Arrays.asList("This page sucks!", "This page rocks!", "Is this page under construction?");
+  private final List<String> comments = new ArrayList();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
     String json = gson.toJson(comments);
     response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String comment = request.getParameter("comment");
+    this.comments.add(comment);
+    
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
   }
 }

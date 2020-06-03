@@ -37,7 +37,7 @@ function fetchData() {
 }
 
 function displayComments(comments) {
-    const parentDiv = document.getElementById('data-container');
+    const parentDiv = document.getElementById('comments-container');
     comments.forEach(comment => parentDiv.appendChild(
         createListElement(comment)));
 }
