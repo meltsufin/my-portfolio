@@ -27,17 +27,19 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 /**
- * Fetches data from server and adds it to the DOM
+ * Fetches comments from server and adds it to the DOM
  */
-function fetchData() {
+function fetchComments() {
+  commentsNum = document.getElementById('comments-num').value;
   // Fetch data and add it to the data-container div
-  fetch('/data')
+  fetch('/comments?num=' + commentsNum)
     .then(response => response.json())
     .then(comments => displayComments(comments));
 }
 
 function displayComments(comments) {
     const parentDiv = document.getElementById('comments-container');
+    parentDiv.innerHTML = ''; // remove all children
     comments.forEach(comment => parentDiv.appendChild(
         createListElement(comment)));
 }
@@ -47,4 +49,13 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+function deleteAllComments() {
+    fetch('/delete-comments', { method: 'POST'})
+    .then(response => response.json())
+    .then(count => {
+      console.log('Deleted ' + count + ' comments.');
+      fetchComments();
+    });
 }
