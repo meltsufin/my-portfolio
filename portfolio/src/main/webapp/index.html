@@ -19,6 +19,15 @@
         <input type="text" name="comment" placeholder="type your comment"/><br/>
         <input type="submit" value="Add Comment"/>
       </form>
+      </br>
+      <img id="uploaded-image" src="">
+      <div id="upload-container">
+        Upload file:
+        <input id="upload-url" type="hidden"/>
+        <input type="file" name="image"/>
+        <button onclick="uploadImage()">Upload</button>
+      </div>
+      <br/>
       <br/>
       Comments: <button onclick='deleteAllComments()'>Delete All Comments</button>
       <div id="comments-container"></div>

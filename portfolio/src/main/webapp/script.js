@@ -14,8 +14,33 @@
 
 
 function init() {
+  getImageUploadUrl();
   fetchComments();
   auth();
+}
+
+function getImageUploadUrl(callback) {
+  fetch("/blobstore-upload-url")
+    .then(response => response.text())
+    .then(url => document.getElementById("upload-url").value = url);
+}
+
+function uploadImage() {
+  const url = document.getElementById("upload-url").value;
+  const formData = new FormData();
+  const fileField = document.querySelector('input[type="file"]');
+
+  formData.append('image', fileField.files[0]);
+
+  fetch(url, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+     document.getElementById("uploaded-image").src = result;
+     document.getElementById("upload-container").style.display = 'none';
+    });
 }
 
 function auth() {
