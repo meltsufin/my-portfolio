@@ -12,6 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+function init() {
+  fetchComments();
+  auth();
+}
+
+function auth() {
+  loginContainer = document.getElementById("login-container");
+  commentForm = document.getElementById("comment-form");
+  fetch("/login")
+    .then(response => response.json())
+    .then(user => {
+      console.log(user);
+      if (user.loggedIn) {
+        commentForm.style.display = "all";
+        loginContainer.innerHTML = "<a href='" + user.logoutUrl + "'>logout</a>";
+      } else {
+        commentForm.style.display = "none";
+        loginContainer.innerHTML = "<a href='" + user.loginUrl + "'>login</a>";
+      }
+    });
+}
 /**
  * Adds a random greeting to the page.
  */

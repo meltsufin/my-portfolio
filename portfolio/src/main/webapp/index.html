@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="fetchComments()">
+  <body onload="init()">
     <div id="content">
       <h1>Mike's Portfolio</h1>
       <p>This Mike's my portfolio.</p>
@@ -15,8 +15,8 @@
       <button onclick="addRandomGreeting()">Hello</button>
       <div id="greeting-container"></div>
       <br/>
-      <form action="/comments" method="POST">
-        <input type="text" name="comment" placeholder="type your comment"/>
+      <form id="comment-form" action="/comments" method="POST">
+        <input type="text" name="comment" placeholder="type your comment"/><br/>
         <input type="submit" value="Add Comment"/>
       </form>
       <br/>
@@ -30,7 +30,7 @@
         <option value="10">10</option>
       </select>
 
-
+      <div id="login-container"></div>
     </div>
   </body>
 </html>
